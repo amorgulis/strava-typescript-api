@@ -5,7 +5,7 @@ const STRAVA_API_URL = 'https://www.strava.com/api/v3';
 export class Strava {
   constructor(private accessToken: string) {}
 
-  private async doRequest<T>(path: string, params: object): Promise<T> {
+  private async doRequest<T>(path: string, params?: object): Promise<T> {
     const url = `${STRAVA_API_URL}/${path}`;
 
     return axios
@@ -17,6 +17,16 @@ export class Strava {
         params: params
       })
       .then(res => res.data);
+  }
+
+  /**
+   * Returns the currently authenticated athlete
+   * @returns Returns the currently authenticated athlete.
+   */
+  async getLoggedInAthlete() {
+    const path = 'athlete';
+
+    return this.doRequest<DetailedAthlete>(path);
   }
 
   /**
@@ -77,6 +87,89 @@ interface ActivityTotal {
   elapsed_time: number;
   elevation_gain: number;
   achievement_count: number;
+}
+
+enum ResourceState {
+  Meta = 1,
+  Summary = 2,
+  Detail = 3
+}
+
+enum SportType {
+  Cycling = 'cycling',
+  Running = 'running',
+  Triathlon = 'triathlon',
+  Other = 'other'
+}
+
+enum Sex {
+  Female = 'F',
+  Male = 'M'
+}
+
+enum FollowerStatus {
+  Pending = 'pending',
+  Accepted = 'accepted',
+  Blocked = 'blocked'
+}
+
+enum UnitSystem {
+  Feet = 'feet',
+  Meters = 'meters'
+}
+
+interface DetailedAthlete {
+  id: number;
+  resource_state: ResourceState;
+  firstname: string;
+  lastname: string;
+  profile_medium: string;
+  profile: string;
+  city: string;
+  state: string;
+  country: string;
+  sex: string;
+  friend: FollowerStatus;
+  follower: FollowerStatus;
+  premium: boolean;
+  created_at: Date;
+  updated_at: Date;
+  follower_count: number;
+  friend_count: number;
+  mutual_friend_count: number;
+  measurement_preference: UnitSystem;
+  email: string;
+  ftp: number;
+  weight: number;
+  clubs: SummaryClub;
+  bikes: SummaryGear;
+  shoes: SummaryGear;
+}
+
+interface SummaryClub {
+  id: number;
+  resource_state: ResourceState;
+  name: string;
+  profile_medium: string;
+  cover_photo: string;
+  cover_photo_small: string;
+  sport_type: SportType;
+  city: string;
+  state: string;
+  country: string;
+  private: boolean;
+  member_count: number;
+  featured: boolean;
+  verified: boolean;
+  url: string;
+}
+
+interface SummaryGear {
+  id: string;
+  resource_state: ResourceState;
+  primary: boolean;
+  name: string;
+  distance: number;
 }
 
 export enum StreamKeys {
