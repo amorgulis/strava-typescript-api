@@ -1,4 +1,5 @@
-import { FollowerStatus, ResourceState } from '../enums';
+import { SummaryClub, SummaryGear } from '.';
+import { FollowerStatus, ResourceState, UnitSystem } from '../enums';
 
 export interface DetailedAthlete {
   id: number;
