@@ -1,6 +1,7 @@
 export * from './activity-stats';
 export * from './activity-total';
 export * from './detailed-athlete';
+export * from './detailed-gear';
 export * from './heart-rate-zone-ranges';
 export * from './power-zone-ranges';
 export * from './stream';

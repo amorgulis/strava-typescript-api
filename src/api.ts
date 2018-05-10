@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { StreamKeys } from './enums';
-import { ActivityStats, DetailedAthlete, StreamSet, Zones } from './models';
+import {
+  ActivityStats,
+  DetailedAthlete,
+  DetailedGear,
+  StreamSet,
+  Zones
+} from './models';
 
 const STRAVA_API_URL = 'https://www.strava.com/api/v3';
 
@@ -58,6 +64,17 @@ export class Strava {
       page: page,
       per_page: perPage
     });
+  }
+
+  /**
+   * Returns an equipment using its identifier.
+   * @param id The identifier of the gear.
+   * @returns A representation of the gear. An instance of DetailedGear.
+   */
+  async getGearById(id: string) {
+    const path = `gear/${id}`;
+
+    return this.doRequest<DetailedGear>(path);
   }
 
   /**
