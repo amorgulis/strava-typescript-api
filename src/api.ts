@@ -38,11 +38,8 @@ export class Strava {
   }
 
   /**
-   * Returns the the authenticated athlete's heart rate and power zones.
-   * @param id The identifier of the athlete.
-   * @param page Page number.
-   * @param perPage Number of items per page. Defaults to 30.
-   * @returns Returns the the authenticated athlete's heart rate and power zones.
+   * Returns the authenticated athlete's heart rate and power zones.
+   * @returns Returns the authenticated athlete's heart rate and power zones.
    */
   async getLoggedInAthleteZones() {
     const path = 'athlete/zones';
