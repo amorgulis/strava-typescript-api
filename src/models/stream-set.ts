@@ -1,3 +1,5 @@
+import { Stream } from '.';
+
 export interface StreamSet {
   time: Stream;
   distance: Stream;

@@ -1,3 +1,5 @@
+import { FollowerStatus, ResourceState } from '../enums';
+
 export interface DetailedAthlete {
   id: number;
   resource_state: ResourceState;

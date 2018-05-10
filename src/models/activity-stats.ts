@@ -1,3 +1,5 @@
+import { ActivityTotal } from '.';
+
 export interface ActivityStats {
   biggest_ride_distance: number;
   biggest_climb_elevation_gain: number;

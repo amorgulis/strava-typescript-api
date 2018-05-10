@@ -1,3 +1,5 @@
+import { ResourceState } from '../enums';
+
 export interface SummaryGear {
   id: string;
   resource_state: ResourceState;

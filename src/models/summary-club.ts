@@ -1,3 +1,5 @@
+import { ResourceState, SportType } from '../enums';
+
 export interface SummaryClub {
   id: number;
   resource_state: ResourceState;
