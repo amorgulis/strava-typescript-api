@@ -7,6 +7,7 @@ import {
   DetailedAthlete,
   DetailedGear,
   StreamSet,
+  SummaryAthlete,
   Zones
 } from './models';
 
@@ -56,6 +57,22 @@ export class Strava {
 
     return this.doRequest<DetailedActivity>(path, {
       include_all_efforts: includeAllEfforts
+    });
+  }
+
+  /**
+   * Returns the athletes who kudoed an activity identified by an identifier.
+   * @param id The identifier of the activity.
+   * @param page Page number.
+   * @param perPage Number of items per page. Defaults to 30.
+   * @returns An array of SummaryAthlete objects.
+   */
+  async getKudoersByActivityId(id: number, page?: number, perPage?: number) {
+    const path = `activities/${id}/kudos`;
+
+    return this.doRequest<SummaryAthlete[]>(path, {
+      page: page,
+      per_page: perPage
     });
   }
 
