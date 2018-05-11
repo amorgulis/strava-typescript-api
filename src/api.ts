@@ -8,6 +8,7 @@ import {
   DetailedGear,
   Lap,
   StreamSet,
+  SummaryActivity,
   SummaryAthlete,
   Zones
 } from './models';
@@ -83,6 +84,30 @@ export class Strava {
     const path = `activities/${id}/kudos`;
 
     return this.doRequest<SummaryAthlete[]>(path, {
+      page: page,
+      per_page: perPage
+    });
+  }
+
+  /**
+   * Returns the activities of an athlete for a specific identifier.
+   * @param before An epoch timestamp to use for filtering activities that have taken place before a certain time.
+   * @param after An epoch timestamp to use for filtering activities that have taken place after a certain time.
+   * @param page Page number.
+   * @param perPage Number of items per page. Defaults to 30.
+   * @returns An array of SummaryActivity objects.
+   */
+  async getLoggedInAthleteActivities(
+    before?: number,
+    after?: number,
+    page?: number,
+    perPage?: number
+  ) {
+    const path = 'athlete/activities';
+
+    return this.doRequest<SummaryActivity[]>(path, {
+      before: before,
+      after: after,
       page: page,
       per_page: perPage
     });

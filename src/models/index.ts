@@ -16,6 +16,7 @@ export * from './power-zone-ranges';
 export * from './split';
 export * from './stream';
 export * from './stream-set';
+export * from './summary-activity';
 export * from './summary-athlete';
 export * from './summary-club';
 export * from './summary-gear';
