@@ -2,6 +2,7 @@ import axios from 'axios';
 import { StreamKeys } from './enums';
 import {
   ActivityStats,
+  ActivityZone,
   Comment,
   DetailedActivity,
   DetailedAthlete,
@@ -111,6 +112,17 @@ export class Strava {
       page: page,
       per_page: perPage
     });
+  }
+
+  /**
+   * Premium Feature. Returns the zones of a given activity.
+   * @param id The identifier of the activity.
+   * @returns An array of ActivityZone objects.
+   */
+  async getZonesByActivityId(id: number) {
+    const path = `activities/${id}/zones`;
+
+    return this.doRequest<ActivityZone[]>(path);
   }
 
   /**
