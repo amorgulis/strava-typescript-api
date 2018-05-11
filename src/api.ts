@@ -2,6 +2,7 @@ import axios from 'axios';
 import { StreamKeys } from './enums';
 import {
   ActivityStats,
+  DetailedActivity,
   DetailedAthlete,
   DetailedGear,
   StreamSet,
@@ -25,6 +26,20 @@ export class Strava {
         params: params
       })
       .then(res => res.data);
+  }
+
+  /**
+   * Returns the given activity that is owned by the authenticated athlete.
+   * @param id The identifier of the activity.
+   * @param includeAllEfforts To include all segments efforts.
+   * @returns The activity's detailed representation. An instance of DetailedActivity.
+   */
+  async getActivityById(id: number, includeAllEfforts: boolean) {
+    const path = `activities/${id}`;
+
+    return this.doRequest<DetailedActivity>(path, {
+      include_all_efforts: includeAllEfforts
+    });
   }
 
   /**

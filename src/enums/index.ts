@@ -1,3 +1,4 @@
+export * from './activity-type';
 export * from './follower-status';
 export * from './resource-state';
 export * from './sex';
