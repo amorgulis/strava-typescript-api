@@ -2,6 +2,7 @@ import axios from 'axios';
 import { StreamKeys } from './enums';
 import {
   ActivityStats,
+  Comment,
   DetailedActivity,
   DetailedAthlete,
   DetailedGear,
@@ -26,6 +27,22 @@ export class Strava {
         params: params
       })
       .then(res => res.data);
+  }
+
+  /**
+   * Returns the comments on the given activity.
+   * @param id The identifier of the activity.
+   * @param page Page number.
+   * @param perPage Number of items per page. Defaults to 30.
+   * @returns An array of Comment objects.
+   */
+  async getCommentsByActivityId(id: number, page?: number, perPage?: number) {
+    const path = `activities/${id}/comments`;
+
+    return this.doRequest<Comment[]>(path, {
+      page: page,
+      per_page: perPage
+    });
   }
 
   /**

@@ -1,5 +1,6 @@
 export * from './activity-stats';
 export * from './activity-total';
+export * from './comment';
 export * from './detailed-activity';
 export * from './detailed-athlete';
 export * from './detailed-gear';
@@ -15,6 +16,7 @@ export * from './power-zone-ranges';
 export * from './split';
 export * from './stream';
 export * from './stream-set';
+export * from './summary-athlete';
 export * from './summary-club';
 export * from './summary-gear';
 export * from './summary-segment';
