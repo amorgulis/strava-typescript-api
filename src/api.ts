@@ -177,7 +177,7 @@ export class Strava {
    * @param id The identifier of the activity.
    * @param keys Desired stream types.
    * @param keyByType Must be true.
-   * @returns An array of the requested streams.
+   * @returns The set of requested streams. An instance of StreamSet.
    */
   async getActivityStreams(
     id: number,
