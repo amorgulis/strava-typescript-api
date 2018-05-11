@@ -6,6 +6,7 @@ import {
   DetailedActivity,
   DetailedAthlete,
   DetailedGear,
+  Lap,
   StreamSet,
   SummaryAthlete,
   Zones
@@ -58,6 +59,17 @@ export class Strava {
     return this.doRequest<DetailedActivity>(path, {
       include_all_efforts: includeAllEfforts
     });
+  }
+
+  /**
+   * Returns the laps of an activity identified by an identifier.
+   * @param id The identifier of the activity.
+   * @returns An array of Lap objects.
+   */
+  async getLapsByActivityId(id: number) {
+    const path = `activities/${id}/laps`;
+
+    return this.doRequest<Lap[]>(path);
   }
 
   /**
